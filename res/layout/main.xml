@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal"
+  android:id="@+id/bottomBar"
+  android:layout_alignParentBottom="true"
+  >
+  <Button 
+	android:layout_width="100dip"
+	android:layout_height="36dip"	
+	android:id="@+id/btnStart"
+	android:text="Start"
+	android:layout_margin="5dip"			
+	android:layout_alignParentLeft="true"
+	/>
+	<Button 
+	android:layout_width="100dip"
+	android:layout_height="36dip"	
+	android:id="@+id/btnStop"
+	android:text="Stop"
+	android:layout_margin="5dip"			
+	android:layout_centerInParent="true"
+	android:gravity="center"
+	/>
+	<Button 
+	android:layout_width="100dip"
+	android:layout_height="36dip"	
+	android:id="@+id/btnReset"
+	android:text="Reset"
+	android:layout_margin="5dip"			
+	android:layout_alignParentRight="true"
+	/>
+	</RelativeLayout>
+	 <TextView
+	android:id="@+id/result"  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="No data so far"
+    android:layout_above="@id/bottomBar"
+    />
+<com.google.android.maps.MapView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mapview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clickable="true"
+    android:apiKey="0atlZIcjxIFxPiS_tIsBP-Zhh3LOVqBhaHsXdRg"
+    android:layout_above="@id/result"
+/>
+</RelativeLayout>
