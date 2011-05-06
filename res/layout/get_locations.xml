@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<ScrollView  
+    xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:id="@+id/GetFareBetweenLocationsView"  
+    android:layout_width="wrap_content"  
+    android:layout_height="wrap_content"  
+    android:scrollbars="vertical">  
+    <LinearLayout  
+        android:layout_width="fill_parent"  
+        android:orientation="vertical"  
+        android:layout_height="fill_parent">  
+  
+	  <TextView  
+	    android:id="@+id/TextViewTitleGetLocations"  
+	    android:layout_width="wrap_content"  
+	    android:layout_height="wrap_content"  
+	    android:text="@string/getlocationsTitleTextView"  
+	    android:textSize="10pt">  
+		</TextView>
+		
+	<EditText  
+	    android:id="@+id/EditTextSourceAddress"  
+	    android:layout_height="wrap_content"  
+	    android:hint="@string/sourceAddressEditText"  
+	    android:inputType="textMultiLine"  
+	    android:lines="3"  
+	    android:layout_width="fill_parent">  
+		</EditText>
+	    
+	 <EditText  
+	    android:id="@+id/EditTextDestinationAddress"  
+	    android:layout_height="wrap_content"  
+	    android:hint="@string/destinationAddressEditText"  
+	    android:inputType="textMultiLine"  
+	    android:lines="3"  
+	    android:layout_width="fill_parent">  
+		</EditText>
+	<Button  
+	    android:id="@+id/ButtonGetFareBetweenLocations"  
+	    android:layout_height="wrap_content"  
+	    android:text="@string/getFareBetweenLocationsButton"  
+	    android:layout_width="fill_parent">  
+		</Button> 
+    </LinearLayout>  
+</ScrollView>  

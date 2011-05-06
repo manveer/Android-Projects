@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bitmagic.farecalculator;
+package com.playground.farecalculator.utils;
 
 import java.util.List;
 
@@ -11,7 +11,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.opengl.Matrix;
-import android.util.Log;
 
 /**
  * @author manveer
@@ -32,12 +31,13 @@ public class MotionDetector
 	private static final int DELAY_IN_MICRO_SECONDS = SensorManager.SENSOR_DELAY_GAME;
 	private static final double ACCEL_THRESHOLD = 0.2;
 	private float currentAcccel;
-
+	private SensorEventListener customEventListener;
+	
 	/** Called when the activity is first created. */
 	public MotionDetector(Context context)
 	{
 		sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-		SensorEventListener customEventListener = new CustomSensorEventListener();
+		customEventListener = new CustomSensorEventListener();
 
 		List<Sensor> sensorsList = sm.getSensorList(Sensor.TYPE_ALL);
 		if (sensorsList != null && sensorsList.size() > 0)
@@ -127,5 +127,10 @@ public class MotionDetector
 			// TODO Auto-generated method stub
 
 		}
+	}
+
+	public void onDestroy()
+	{
+		sm.unregisterListener(customEventListener);
 	}
 }

@@ -1,9 +1,7 @@
 /**
  * 
  */
-package com.bitmagic.farecalculator;
-
-import java.util.ArrayList;
+package com.playground.farecalculator.gui;
 
 import android.app.AlertDialog;
 import android.content.Context;

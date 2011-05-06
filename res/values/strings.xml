@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, FareCalculatorActivity!</string>
-    <string name="app_name">Autorickshaw Fare Calculator</string>
+    <string name="app_name">Fare Calculator</string>
+    <string name="getlocationsTitleTextView">Enter the source and destination address to get a rough estimate of fare between the two locations.</string>
+    <string name="sourceAddressEditText">Source Address</string>
+    <string name="destinationAddressEditText">Destination Address</string>
+    <string name="getFareBetweenLocationsButton">Check Fare</string>
 </resources>

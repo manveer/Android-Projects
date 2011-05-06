@@ -1,4 +1,4 @@
-package com.bitmagic.farecalculator;
+package com.playground.farecalculator.activity;
 
 import java.util.List;
 
@@ -14,14 +14,19 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bitmagic.farecalculator.R;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.playground.farecalculator.fares.IFare;
+import com.playground.farecalculator.fares.MumbaiAutoRickshawFare;
+import com.playground.farecalculator.gui.CurrentLocationsOverlay;
+import com.playground.farecalculator.utils.MotionDetector;
 
-public class FareCalculatorActivity extends MapActivity implements OnClickListener
+public class JourneyFareCalculatorActivity extends MapActivity implements OnClickListener
 {
 	private LocationManager locationManager;
 	private MapView mapView;
@@ -46,14 +51,16 @@ public class FareCalculatorActivity extends MapActivity implements OnClickListen
 	private Button mBtnReset;
 	private boolean isStarted;
 	private MotionDetector motionDetector;
-	
+	private CustomLocationListener locationListener;
+	private IFare fareCalculator;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
+
+		fareCalculator = new MumbaiAutoRickshawFare();
 		motionDetector = new MotionDetector(this);
 		
 		resultView = (TextView) findViewById(R.id.result);
@@ -65,7 +72,7 @@ public class FareCalculatorActivity extends MapActivity implements OnClickListen
 		mapView.setBuiltInZoomControls(true);
 		mapView.displayZoomControls(true);
 
-		CustomLocationListener locationListener = new CustomLocationListener();
+		locationListener = new CustomLocationListener();
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		List<String> allProviders = locationManager.getAllProviders();
@@ -137,24 +144,6 @@ public class FareCalculatorActivity extends MapActivity implements OnClickListen
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	private int getFare()
-	{
-		int ticks = 10;
-		if(totalDistance > 1500)
-		{
-			ticks += (int)Math.ceil(((double)totalDistance - 1500)/200); // 1 tick for every 200 meters after 1.5 km
-			ticks += ((waitTime/1000)/60); 
-		}
-		else // totalDistance is less than 1500 m , for every 150 m one tick is there
-		{
-			int calculatedTicks = ((waitTime/1000)/60); // ticks for wait time, 1 tick for every 1 minute
-			calculatedTicks += (int)Math.ceil(totalDistance/150); // ticks for every 150 metre
-			if(calculatedTicks > ticks)
-				ticks = calculatedTicks;
-		}
-		return (int)Math.ceil(ticks*1.3 -2);
-	}
 	
 	private void makeUseOfNewLocation(Location location)
 	{
@@ -192,7 +181,7 @@ public class FareCalculatorActivity extends MapActivity implements OnClickListen
 				lastLongitude = lng;
 			}
 			currentLocation = location;
-			setResult(geoPoint.toString() + ", wait-time:"+(waitTime/1000)+", distance:"+totalDistance+", fare: " + getFare()+", accel: " + motionDetector.getCurrentAccel());
+			setResult(geoPoint.toString() + ", wait-time:"+(waitTime/1000)+", distance:"+totalDistance+", fare: " + ((int)fareCalculator.getFare(totalDistance, waitTime)) +", accel: " + motionDetector.getCurrentAccel());
 		}
 		else
 		{
@@ -329,5 +318,25 @@ public class FareCalculatorActivity extends MapActivity implements OnClickListen
 		default:
 			break;
 		}			
+	}
+	
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+	}
+	
+	@Override 
+	public void onStop()
+	{
+		super.onStop();
+		
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		locationManager.removeUpdates(locationListener);
+		motionDetector.onDestroy();
 	}
 }
