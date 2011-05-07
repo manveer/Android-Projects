@@ -14,13 +14,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bitmagic.farecalculator.R;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.playground.farecalculator.R;
 import com.playground.farecalculator.fares.IFare;
 import com.playground.farecalculator.fares.MumbaiAutoRickshawFare;
 import com.playground.farecalculator.gui.CurrentLocationsOverlay;
