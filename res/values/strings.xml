@@ -6,4 +6,12 @@
     <string name="sourceAddressEditText">Source Address</string>
     <string name="destinationAddressEditText">Destination Address</string>
     <string name="getFareBetweenLocationsButton">Check Fare</string>
+    <string name="city_prompt">Select a city</string>
+    <string-array name="cities_array">
+        <item>Mumbai</item>
+        <item>Delhi</item>
+        <item>Bangalore</item>
+        <item>Hyderabad</item>
+        <item>Pune</item>
+    </string-array>
 </resources>
