@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.playground.farecalculator.R;
+import com.playground.farecalculator.entities.EntitiesManager;
 
 /**
  * @author Manveer Chawla (manveer.chawla@gmail.com)
@@ -25,11 +26,13 @@ public class StartupActivity extends Activity implements OnClickListener, OnItem
 	private Spinner citySpinner;
 	private Button startJourneyButton;
 	private Button estimateFareButton;
-
+	private int citySelectedIndex;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		this.citySelectedIndex = -1;
 		setContentView(R.layout.start);
 		// The activity is being created.
 
@@ -40,8 +43,8 @@ public class StartupActivity extends Activity implements OnClickListener, OnItem
 	private void initViews()
 	{
 		citySpinner = (Spinner) findViewById(R.id.spinnerCity);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.cities_array,
-				android.R.layout.simple_spinner_item);
+		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, EntitiesManager
+				.getInstance().getCities());
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		citySpinner.setAdapter(adapter);
 
@@ -97,7 +100,8 @@ public class StartupActivity extends Activity implements OnClickListener, OnItem
 
 	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
 	{
-		Toast.makeText(parent.getContext(), "The city is " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
+		this.citySelectedIndex = pos;
+		//Toast.makeText(parent.getContext(), "The city is " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
 	}
 
 	public void onNothingSelected(AdapterView parent)

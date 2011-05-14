@@ -33,15 +33,18 @@ public class EntitiesManager
 	private IFare fareArray[][];
 	private EntitiesManager()
 	{
+		/** Any new addition to the City or Transport will need to add corresponding 
+		 * IFare implementation in populateFareArray and a line below to 
+		 * populateCitiesToTransportMap**/
 		this.fareArray = new IFare[CitiesEnum.values().length][TransportsEnum.values().length];
-		populateFareClass();
+		populateFareArray();
 		
 		this.citiesToTransportMap = new HashMap<String, List<TransportsEnum>>();
-		populateMap(CitiesEnum.Mumbai, TransportsEnum.AutoRickshaw, TransportsEnum.TaxiAC, TransportsEnum.TaxiNonAC, TransportsEnum.Meru);
-		populateMap(CitiesEnum.Pune, TransportsEnum.AutoRickshaw, TransportsEnum.Meru);
+		populateCitiesToTransportMap(CitiesEnum.Mumbai, TransportsEnum.AutoRickshaw, TransportsEnum.TaxiAC, TransportsEnum.TaxiNonAC, TransportsEnum.Meru);
+		populateCitiesToTransportMap(CitiesEnum.Pune, TransportsEnum.AutoRickshaw, TransportsEnum.Meru);
 	}
 	
-	private void populateMap(CitiesEnum city, Object ... transports)
+	private void populateCitiesToTransportMap(CitiesEnum city, Object ... transports)
 	{
 		List<TransportsEnum> transportsList = new ArrayList<TransportsEnum>();
 		for(Object obj : transports)
@@ -51,7 +54,7 @@ public class EntitiesManager
 		citiesToTransportMap.put(city.name().toLowerCase(), transportsList);
 	}
 	
-	private void populateFareClass()
+	private void populateFareArray()
 	{
 		// Mumbai -> All type of transports
 		fareArray[CitiesEnum.Mumbai.ordinal()][TransportsEnum.AutoRickshaw.ordinal()] = new MumbaiAutoRickshawFare();
@@ -89,5 +92,16 @@ public class EntitiesManager
 				return city;
 		}
 		return null;
+	}
+
+	public CharSequence[] getCities()
+	{
+		CharSequence[] cities = new String[CitiesEnum.values().length];
+		int i = 0;
+		for(CitiesEnum city : CitiesEnum.values())
+		{
+			cities[i++] = city.name();
+		}
+		return cities;
 	}
 }

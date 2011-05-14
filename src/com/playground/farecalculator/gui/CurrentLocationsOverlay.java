@@ -11,7 +11,7 @@ import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
 
 /**
- * @author manveer
+ * @author Manveer Chawla (manveer.chawla@gmail.com)
  * 
  */
 public class CurrentLocationsOverlay extends ItemizedOverlay<OverlayItem>
