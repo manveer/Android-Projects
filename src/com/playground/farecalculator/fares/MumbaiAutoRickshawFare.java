@@ -3,9 +3,8 @@
  */
 package com.playground.farecalculator.fares;
 
-
 /**
- * @author manveer
+ * @author Manveer Chawla (manveer.chawla@gmail.com)
  *
  */
 public class MumbaiAutoRickshawFare implements IFare
