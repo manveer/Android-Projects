@@ -4,10 +4,17 @@
 package com.playground.farecalculator.activity;
 
 
+import java.io.IOException;
+import java.util.Arrays;
+
+import org.json.JSONException;
+
 import com.playground.farecalculator.R;
+import com.playground.farecalculator.googleAPIAdapter.DirectionAPIAdapter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -22,11 +29,13 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 	private EditText sourceAddressField;
 	private EditText destinationAddressField;
 	private Button getFareButton;
-
+	private final String LOG_TAG = "StaticFareCalculator";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.get_locations);
 		// The activity is being created.
 		
 		sourceAddressField = (EditText)findViewById(R.id.EditTextSourceAddress);
@@ -36,7 +45,6 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 		getFareButton = (Button) findViewById(R.id.ButtonGetFareBetweenLocations);
 		getFareButton.setEnabled(true);
 		getFareButton.setOnClickListener(this);
-		
 		
 	}
 
@@ -82,11 +90,29 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 		switch (v.getId())
 		{
 		case R.id.ButtonGetFareBetweenLocations:
-			
+			calculateFare(sourceAddressField.getText().toString(), destinationAddressField.getText().toString());
 			break;
 
 		default:
 			break;
 		}
+	}
+	
+	private void calculateFare(String source, String destination)
+	{
+		double[] distances = null;
+		try
+		{
+			distances = DirectionAPIAdapter.getDistanceBetweenPoints("Old Guest house IIT Bombay Powai Mumbai", "rcity mall ghatkopar");
+		}
+		catch (IOException e)
+		{
+			Log.e(LOG_TAG, "IOException occurred while getting distance between source and destination",e);
+		}
+		catch (JSONException e)
+		{
+			Log.e(LOG_TAG, "Unable to parse the response",e);
+		}
+		Log.e(LOG_TAG,Arrays.toString(distances));
 	}
 }
