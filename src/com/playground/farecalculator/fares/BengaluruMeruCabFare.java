@@ -7,11 +7,11 @@ package com.playground.farecalculator.fares;
  * @author Manveer Chawla (manveer.chawla@gmail.com)
  *
  */
-public class MumbaiBlackYellowTaxiFare implements IFare
+public class BengaluruMeruCabFare implements IFare
 {
-	public static final int INITIAL_TICKS = 10;
-	public static final double DISTANCE_FOR_FIRST_TICK = 1600;
-	public static final double DISTANCE_FOR_EVERY_SUBSEQUENT_TICK = (1000/6);
+	public static final int INITIAL_TICKS = 40;
+	public static final double DISTANCE_FOR_FIRST_TICK = 4000;
+	public static final double DISTANCE_FOR_EVERY_SUBSEQUENT_TICK = (100);
 	@Override
 	public double getFare(double distanceTravelled, int waitTime)
 	{
@@ -28,6 +28,7 @@ public class MumbaiBlackYellowTaxiFare implements IFare
 			if(calculatedTicks > ticks)
 				ticks = calculatedTicks;
 		}
-		return (ticks*1.6);
+		return (ticks*1.5);
 	}
+
 }

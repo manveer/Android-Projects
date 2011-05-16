@@ -35,11 +35,33 @@
 	    android:lines="3"  
 	    android:layout_width="fill_parent">  
 		</EditText>
-	<Button  
-	    android:id="@+id/ButtonGetFareBetweenLocations"  
-	    android:layout_height="wrap_content"  
-	    android:text="@string/getFareBetweenLocationsButton"  
-	    android:layout_width="fill_parent">  
-		</Button> 
-    </LinearLayout>  
+	<RelativeLayout  
+        android:layout_width="match_parent"  
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dip" 
+        android:layout_marginLeft="2dip" 
+        android:layout_marginRight="2dip">
+		<Button
+		    android:id="@+id/ButtonGetFareBetweenLocations"  
+		    android:layout_height="wrap_content"  
+		    android:text="@string/getFareBetweenLocationsButton"  
+		    android:layout_alignParentLeft="true"
+		    android:layout_width="wrap_content">  
+		</Button>
+		<Button
+		    android:id="@+id/ButtonResetBetweenLocations"  
+		    android:layout_height="wrap_content"  
+		    android:text="@string/resetFieldsInFareBetweenLocations"
+		    android:layout_centerInParent="true"  
+		    android:layout_width="wrap_content">  
+		</Button>
+		<Button
+		    android:id="@+id/ButtonGoBackFromLocationsToStartup"  
+		    android:layout_height="wrap_content"  
+		    android:text="@string/goBackFromLocationsToStartup"
+		    android:layout_alignParentRight="true"  
+		    android:layout_width="wrap_content">  
+		</Button>
+	</RelativeLayout> 
+  </LinearLayout>  
 </ScrollView>  

@@ -5,6 +5,11 @@
     <string name="getlocationsTitleTextView">Enter the source and destination address to get a rough estimate of fare between the two locations.</string>
     <string name="sourceAddressEditText">Source Address</string>
     <string name="destinationAddressEditText">Destination Address</string>
-    <string name="getFareBetweenLocationsButton">Check Fare</string>
+    <string name="getFareBetweenLocationsButton">Check</string>
     <string name="city_prompt">Select a city</string>
+    <string name="noRouteErrorString">No route found for destination specified</string>
+    <string name="ioExceptionWhileCallingGoogleDirectionAPIErrorString">Internet access error, check your internet connection and try again</string>
+    <string name="jsonParseExceptionWhileCallingGoogleDirectionAPIErrorString">Unable to parse response received from server</string>
+    <string name="resetFieldsInFareBetweenLocations">Reset</string>
+    <string name="goBackFromLocationsToStartup">Back</string>
 </resources>

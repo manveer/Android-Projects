@@ -13,7 +13,7 @@ import com.playground.farecalculator.fares.MumbaiAutoRickshawFare;
 import com.playground.farecalculator.fares.MumbaiBlackYellowTaxiFare;
 import com.playground.farecalculator.fares.MumbaiMeruCabFare;
 import com.playground.farecalculator.fares.PuneAutoRickshawFare;
-import com.playground.farecalculator.fares.PuneMeruCabFare;
+import com.playground.farecalculator.fares.BengaluruMeruCabFare;
 
 /**
  * @author Manveer Chawla (manveer.chawla@gmail.com)
@@ -40,8 +40,9 @@ public class EntitiesManager
 		populateFareArray();
 		
 		this.citiesToTransportMap = new HashMap<String, List<TransportsEnum>>();
-		populateCitiesToTransportMap(CitiesEnum.Mumbai, TransportsEnum.AutoRickshaw, TransportsEnum.TaxiAC, TransportsEnum.TaxiNonAC, TransportsEnum.Meru);
-		populateCitiesToTransportMap(CitiesEnum.Pune, TransportsEnum.AutoRickshaw, TransportsEnum.Meru);
+		populateCitiesToTransportMap(CitiesEnum.Mumbai, TransportsEnum.AutoRickshaw, TransportsEnum.TaxiNonAC, TransportsEnum.Meru);
+		populateCitiesToTransportMap(CitiesEnum.Pune, TransportsEnum.AutoRickshaw);
+		populateCitiesToTransportMap(CitiesEnum.Bangalore, TransportsEnum.Meru);
 	}
 	
 	private void populateCitiesToTransportMap(CitiesEnum city, Object ... transports)
@@ -58,12 +59,13 @@ public class EntitiesManager
 	{
 		// Mumbai -> All type of transports
 		fareArray[CitiesEnum.Mumbai.ordinal()][TransportsEnum.AutoRickshaw.ordinal()] = new MumbaiAutoRickshawFare();
+	
 		fareArray[CitiesEnum.Mumbai.ordinal()][TransportsEnum.TaxiNonAC.ordinal()] = new MumbaiBlackYellowTaxiFare();
-		fareArray[CitiesEnum.Mumbai.ordinal()][TransportsEnum.TaxiAC.ordinal()] = new MumbaiBlackYellowTaxiFare();
 		fareArray[CitiesEnum.Mumbai.ordinal()][TransportsEnum.Meru.ordinal()] = new MumbaiMeruCabFare();
 		
 		fareArray[CitiesEnum.Pune.ordinal()][TransportsEnum.AutoRickshaw.ordinal()] = new PuneAutoRickshawFare();
-		fareArray[CitiesEnum.Pune.ordinal()][TransportsEnum.Meru.ordinal()] = new PuneMeruCabFare();
+		
+		fareArray[CitiesEnum.Bangalore.ordinal()][TransportsEnum.Meru.ordinal()] = new BengaluruMeruCabFare();
 	}
 	
 	public IFare getFareCalculator(CitiesEnum city, TransportsEnum transport)
@@ -71,9 +73,16 @@ public class EntitiesManager
 		return fareArray[city.ordinal()][transport.ordinal()];
 	}
 	
-	public List<TransportsEnum> getTransportsForCity(CitiesEnum city)
+	public String[] getTransportsForCity(CitiesEnum city)
 	{
-		return citiesToTransportMap.get(city);
+		List<TransportsEnum> transports = citiesToTransportMap.get(city.name().toLowerCase());
+		if(transports == null || transports.size() == 0)
+			return null;
+		String[] result = new String[transports.size()];
+		int i = 0;
+		for(TransportsEnum transport : transports)
+			result[i++] = transport.getDisplayString();
+		return result;
 	}
 	
 	/**

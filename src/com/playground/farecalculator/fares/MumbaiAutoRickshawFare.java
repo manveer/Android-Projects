@@ -18,7 +18,7 @@ public class MumbaiAutoRickshawFare implements IFare
 		int ticks = INITIAL_TICKS;
 		if(distanceTravelled > DISTANCE_FOR_FIRST_TICK)
 		{
-			ticks += (int)Math.ceil(((double)distanceTravelled - DISTANCE_FOR_FIRST_TICK)/DISTANCE_FOR_FIRST_TICK); // 1 tick for every 200 meters after 1.5 km
+			ticks += (int)Math.ceil(((double)distanceTravelled - DISTANCE_FOR_FIRST_TICK)/DISTANCE_FOR_EVERY_SUBSEQUENT_TICK); // 1 tick for every 200 meters after 1.5 km
 			ticks += ((waitTime/1000)/60); 
 		}
 		else // totalDistance is less than 1500 m , for every 150 m one tick is there
@@ -30,5 +30,4 @@ public class MumbaiAutoRickshawFare implements IFare
 		}
 		return (ticks*1.3 -2);
 	}
-	
 }
