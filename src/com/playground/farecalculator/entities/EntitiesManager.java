@@ -113,4 +113,33 @@ public class EntitiesManager
 		}
 		return cities;
 	}
+	
+	/**
+	 * Returns a string of all the possible modes of transport with fare for each of them for a given city
+	 * @param citySelected City for which to calculate fare 
+	 * @param waitTime wait time
+	 * @param distances distance array containing minimum and maximum distance
+	 * @return a <code>String</code> representing the fare for different modes of transport
+	 */
+	public String getFare(int citySelected, int waitTime, double distances[])
+	{
+		StringBuilder sb = new StringBuilder();
+		CitiesEnum city = CitiesEnum.values()[citySelected];
+		for (TransportsEnum transport : TransportsEnum.values())
+		{
+			IFare fareCalculator = getFareCalculator(city, transport);
+			if (fareCalculator != null)
+			{
+				double minFare = Math.ceil(fareCalculator.getFare(distances[0], waitTime));
+				sb.append(transport.getDisplayString()).append(": Rs ").append(minFare);
+				if (distances.length > 1)
+				{
+					double maxFare = Math.ceil(fareCalculator.getFare(distances[distances.length - 1], 0));
+					sb.append(" to ").append(maxFare);
+				}
+				sb.append("\n");
+			}
+		}
+		return sb.toString();
+	}
 }

@@ -2,13 +2,17 @@ package com.playground.farecalculator.activity;
 
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,24 +25,23 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 import com.playground.farecalculator.R;
-import com.playground.farecalculator.fares.IFare;
-import com.playground.farecalculator.fares.MumbaiAutoRickshawFare;
+import com.playground.farecalculator.entities.EntitiesManager;
 import com.playground.farecalculator.gui.CurrentLocationsOverlay;
+import com.playground.farecalculator.utils.Constants;
 import com.playground.farecalculator.utils.MotionDetector;
 
 public class JourneyFareCalculatorActivity extends MapActivity implements OnClickListener
 {
 	private LocationManager locationManager;
 	private MapView mapView;
-	private TextView resultView;
 	private GeoPoint geoPoint;
 	private MapController mapController;
-	private String bestProvider;
-	private String pre = "";
 	private static final int INITIAL_LATITUDE = 19114445;
 	private static final int INITIAL_LONGITUDE = 72897860;
 	private static final int MAXIMUM_INTERVAL_BETWEEN_UPDATES = 1000 * 5;
 	private static final int MINIMUM_INTERVAL_BETWEEN_UPDATES = 50;
+	private static final String LOG_TAG = "JourneyFareCalculator";
+	private static final int DIALOG_STOP_JOURNEY = 0;
 	private Location currentLocation;
 	private double lastLatitude;
 	private double lastLongitude;
@@ -52,7 +55,8 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 	private boolean isStarted;
 	private MotionDetector motionDetector;
 	private CustomLocationListener locationListener;
-	private IFare fareCalculator;
+	private int citySelected;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -60,32 +64,14 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		fareCalculator = new MumbaiAutoRickshawFare();
+		Intent intent = getIntent();
+		citySelected = intent.getIntExtra(Constants.CITY_SELECTED, -1);
+
 		motionDetector = new MotionDetector(this);
 		
-		resultView = (TextView) findViewById(R.id.result);
-		mapView = (MapView) findViewById(R.id.mapview);
-		mapView.setBuiltInZoomControls(true);
-		mapView.setSatellite(false);
-		mapController = mapView.getController();
-
-		mapView.setBuiltInZoomControls(true);
-		mapView.displayZoomControls(true);
-
 		locationListener = new CustomLocationListener();
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		List<String> allProviders = locationManager.getAllProviders();
-		for (String provider : allProviders)
-		{
-			pre += provider + ", ";
-			// locationManager.requestLocationUpdates(provider, 0, 0,
-			// locationListener);
-		}
-		bestProvider = locationManager.getBestProvider(new Criteria(), false);
-		// locationManager.requestLocationUpdates(bestProvider, 0, 0,
-		// locationListener);
-		pre += "best-provider: " + bestProvider + "\n";
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
@@ -95,10 +81,26 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		else
 			geoPoint = new GeoPoint(INITIAL_LATITUDE, INITIAL_LONGITUDE);
 
+
+		isStarted = false;
+		totalDistance = 0;
+		waitTime = 0;
+
+		initViews();
+		initListeners();
+	}
+
+	private void initViews()
+	{
+		mapView = (MapView) findViewById(R.id.mapview);
+		mapView.setBuiltInZoomControls(true);
+		mapView.setSatellite(false);
+		mapView.setBuiltInZoomControls(true);
+		mapView.displayZoomControls(true);
+		
+		mapController = mapView.getController();
 		mapController.setCenter(geoPoint);
 		mapController.setZoom(15);
-
-		setResult(geoPoint.toString()+", accel: " + motionDetector.getCurrentAccel());
 
 		List<Overlay> mapOverlays = mapView.getOverlays();
 		Drawable drawable = this.getResources().getDrawable(R.drawable.androidmarker);
@@ -107,37 +109,24 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		OverlayItem overlayitem = new OverlayItem(geoPoint, "Current Location", "Wassup?");
 		currentLocationOverlay.addOverlay(overlayitem);
 		mapOverlays.add(currentLocationOverlay);
-		
-		isStarted = false;
-		totalDistance = 0;
-		waitTime = 0;
-		
+
 		mBtnSart = (Button) findViewById(R.id.btnStart);
 		mBtnSart.setEnabled(true);
-		mBtnSart.setOnClickListener(this);
 		
 		mBtnStop = (Button) findViewById(R.id.btnStop);
 		mBtnStop.setEnabled(true);
-		mBtnStop.setOnClickListener(this);
 		
 		mBtnReset = (Button) findViewById(R.id.btnReset);
 		mBtnReset.setEnabled(true);
+	}
+	
+	private void initListeners()
+	{
+		mBtnSart.setOnClickListener(this);
+		mBtnStop.setOnClickListener(this);
 		mBtnReset.setOnClickListener(this);
 	}
-
-	private void setResult(String text)
-	{
-		final String tmp = text;
-		runOnUiThread(new Runnable() {
-
-			@Override
-			public void run()
-			{
-				resultView.setText(pre + tmp);
-			}
-		});
-	}
-
+	
 	@Override
 	protected boolean isRouteDisplayed()
 	{
@@ -181,11 +170,10 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 				lastLongitude = lng;
 			}
 			currentLocation = location;
-			setResult(geoPoint.toString() + ", wait-time:"+(waitTime/1000)+", distance:"+totalDistance+", fare: " + ((int)fareCalculator.getFare(totalDistance, waitTime)) +", accel: " + motionDetector.getCurrentAccel());
 		}
 		else
 		{
-			setResult("null location received");
+			Log.e(LOG_TAG, "Null location received");
 		}
 	}
 
@@ -310,6 +298,10 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		case R.id.btnStop:
 			isStarted = false;
 			setResult(RESULT_OK);
+			String result = EntitiesManager.getInstance().getFare(this.citySelected, waitTime, new double[]{totalDistance});
+			Bundle args = new Bundle();
+			args.putString("message", result);
+			showDialog(DIALOG_STOP_JOURNEY, args);
 			break;
 		case R.id.btnReset:
 			reset();
@@ -318,6 +310,45 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		default:
 			break;
 		}			
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id)
+	{
+		Dialog dialog = null;
+		switch (id)
+		{
+		case DIALOG_STOP_JOURNEY:
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Calculated Fare");
+			builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int item)
+				{
+					dialog.dismiss();
+				}
+			});
+			builder.setCancelable(false);
+			dialog = builder.create();
+			break;
+		default:
+			dialog = null;
+		}
+		return dialog;
+	}
+	
+	@Override
+	protected void onPrepareDialog(int id, Dialog dialog, Bundle args)
+	{
+		switch (id)
+		{
+		case DIALOG_STOP_JOURNEY:
+			String message = args.getString("message");
+			TextView tv = new TextView(this);
+			tv.setText(message);
+			((AlertDialog) dialog).setView(tv);
+			break;
+		default:
+		}
 	}
 	
 	@Override

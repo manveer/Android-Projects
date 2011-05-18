@@ -22,10 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.playground.farecalculator.R;
-import com.playground.farecalculator.entities.CitiesEnum;
 import com.playground.farecalculator.entities.EntitiesManager;
-import com.playground.farecalculator.entities.TransportsEnum;
-import com.playground.farecalculator.fares.IFare;
 import com.playground.farecalculator.googleAPIAdapter.DirectionAPIAdapter;
 import com.playground.farecalculator.utils.Constants;
 
@@ -134,6 +131,7 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 			destinationAddressField.setText("");
 			break;
 		case R.id.ButtonGoBackFromLocationsToStartup:
+			setResult(RESULT_OK);
 			finish();
 			break;
 		default:
@@ -201,26 +199,7 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 		}
 		if (distances != null && distances.length > 0)
 		{
-			StringBuilder sb = new StringBuilder();
-			Arrays.sort(distances);
-			EntitiesManager em = EntitiesManager.getInstance();
-			CitiesEnum city = CitiesEnum.values()[this.citySelected];
-			for (TransportsEnum transport : TransportsEnum.values())
-			{
-				IFare fareCalculator = em.getFareCalculator(city, transport);
-				if (fareCalculator != null)
-				{
-					double minFare = Math.ceil(fareCalculator.getFare(distances[0], 0));
-					sb.append(transport.getDisplayString()).append(": Rs ").append(minFare);
-					if (distances.length > 1)
-					{
-						double maxFare = Math.ceil(fareCalculator.getFare(distances[distances.length - 1], 0));
-						sb.append(" to ").append(maxFare);
-					}
-					sb.append("\n");
-				}
-			}
-			result = sb.toString();
+			result = EntitiesManager.getInstance().getFare(this.citySelected, 0, distances);
 		}
 		else
 		{
