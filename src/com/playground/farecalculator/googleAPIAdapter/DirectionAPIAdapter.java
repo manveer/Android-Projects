@@ -18,7 +18,7 @@ import com.playground.farecalculator.utils.URLUtils;
  */
 public class DirectionAPIAdapter
 {
-	public static final String GOOGLE_MAPS_DIRECTIONS_API = "http://maps.googleapis.com/maps/api/directions/json?origin=%1$s&destination=%2$s&alternatives=false&sensor=true&units=metric";
+	public static final String GOOGLE_MAPS_DIRECTIONS_API = "http://maps.googleapis.com/maps/api/directions/json?origin=%1$s&destination=%2$s&alternatives=true&sensor=true&units=metric";
 	
 	public static final String STATUS_PARAM = "status";
 	public static final String ROUTES_PARAM = "routes";

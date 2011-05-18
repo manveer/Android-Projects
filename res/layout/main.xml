@@ -15,8 +15,8 @@
   <Button 
 	android:layout_width="100dip"
 	android:layout_height="36dip"	
-	android:id="@+id/btnStart"
-	android:text="Start"
+	android:id="@+id/btnBackJourney"
+	android:text="Back"
 	android:layout_margin="5dip"			
 	android:layout_alignParentLeft="true"
 	/>
@@ -38,13 +38,6 @@
 	android:layout_alignParentRight="true"
 	/>
 	</RelativeLayout>
-	 <TextView
-	android:id="@+id/result"  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="No data so far"
-    android:layout_above="@id/bottomBar"
-    />
 <com.google.android.maps.MapView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mapview"
@@ -52,6 +45,6 @@
     android:layout_height="fill_parent"
     android:clickable="true"
     android:apiKey="0atlZIcjxIFxPiS_tIsBP-Zhh3LOVqBhaHsXdRg"
-    android:layout_above="@id/result"
+    android:layout_above="@id/bottomBar"
 />
 </RelativeLayout>

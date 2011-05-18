@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.playground.farecalculator.R;
+import com.playground.farecalculator.entities.CitiesEnum;
 import com.playground.farecalculator.entities.EntitiesManager;
 import com.playground.farecalculator.googleAPIAdapter.DirectionAPIAdapter;
 import com.playground.farecalculator.utils.Constants;
@@ -185,7 +186,8 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 		double[] distances = null;
 		try
 		{
-			distances = DirectionAPIAdapter.getDistanceBetweenPoints("Old Guest house IIT Bombay Powai Mumbai", "rcity mall ghatkopar");
+			String cityName = CitiesEnum.values()[citySelected].name();
+			distances = DirectionAPIAdapter.getDistanceBetweenPoints(source + " " + cityName + " India", destination + " " + cityName + " India");
 		}
 		catch (IOException e)
 		{

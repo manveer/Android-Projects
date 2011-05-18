@@ -105,10 +105,9 @@ public class StartupActivity extends Activity implements OnClickListener, OnItem
 	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
 	{
 		this.citySelectedIndex = pos;
-		//Toast.makeText(parent.getContext(), "The city is " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
 	}
 
-	public void onNothingSelected(AdapterView parent)
+	public void onNothingSelected(AdapterView<?> parent)
 	{
 		// Do nothing.
 	}

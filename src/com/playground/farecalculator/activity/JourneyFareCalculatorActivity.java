@@ -49,7 +49,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 	private double totalDistance;
 	private long startTime;
 	private int waitTime;
-	private Button mBtnSart;
+	private Button mBtnBack;
 	private Button mBtnStop;
 	private Button mBtnReset;
 	private boolean isStarted;
@@ -110,8 +110,8 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		currentLocationOverlay.addOverlay(overlayitem);
 		mapOverlays.add(currentLocationOverlay);
 
-		mBtnSart = (Button) findViewById(R.id.btnStart);
-		mBtnSart.setEnabled(true);
+		mBtnBack = (Button) findViewById(R.id.btnBackJourney);
+		mBtnBack.setEnabled(true);
 		
 		mBtnStop = (Button) findViewById(R.id.btnStop);
 		mBtnStop.setEnabled(true);
@@ -122,7 +122,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 	
 	private void initListeners()
 	{
-		mBtnSart.setOnClickListener(this);
+		mBtnBack.setOnClickListener(this);
 		mBtnStop.setOnClickListener(this);
 		mBtnReset.setOnClickListener(this);
 	}
@@ -290,10 +290,9 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 	public void onClick(View v)
 	{
 		switch (v.getId()) {
-		case R.id.btnStart:
-			reset();
-			isStarted = true;
+		case R.id.btnBackJourney:
 			setResult(RESULT_OK);
+			finish();
 			break;
 		case R.id.btnStop:
 			isStarted = false;
@@ -305,6 +304,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 			break;
 		case R.id.btnReset:
 			reset();
+			isStarted = true;
 			setResult(RESULT_OK);
 			break;
 		default:
@@ -367,6 +367,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 	@Override
 	public void onDestroy()
 	{
+		super.onDestroy();
 		locationManager.removeUpdates(locationListener);
 		motionDetector.onDestroy();
 	}
