@@ -3,6 +3,8 @@
  */
 package com.playground.farecalculator.fares;
 
+import com.playground.farecalculator.utils.CommonUtils;
+
 /**
  * @author Manveer Chawla (manveer.chawla@gmail.com)
  *
@@ -18,6 +20,12 @@ public class MumbaiAutoRickshawFare implements IFare
 	public static final int WAIT_TIME_CONCESSION = 0; //0 minutes
 	public static final double TICKS_MULTIPLICATION_FACTOR = 1.3;
 	public static final double CONSTANT_FACTOR = -2;
+	public static final double NIGHT_CHARGE_CONSTANT_MULTIPLICATION_FACTOR = 1.25;
+	public static final double NIGHT_CHARGE_CONSTANT_ADDITION_FACTOR = 0;
+	public static final int NIGHT_CHARGE_START_HOUR = 0;
+	public static final int NIGHT_CHARGE_END_HOUR = 5;
+	public static final int NIGHT_CHARGE_START_MINUTE = 0;
+	public static final int NIGHT_CHARGE_END_MINUTE = 0;
 	
 	@Override
 	public double getFare(double distanceTravelled, int waitTime)
@@ -39,6 +47,9 @@ public class MumbaiAutoRickshawFare implements IFare
 			if(calculatedTicks > ticks)
 				ticks = calculatedTicks;
 		}
-		return (ticks*TICKS_MULTIPLICATION_FACTOR + CONSTANT_FACTOR);
+		double fare = (ticks*TICKS_MULTIPLICATION_FACTOR + CONSTANT_FACTOR); 
+		if(CommonUtils.isNightFareApplicable(NIGHT_CHARGE_START_HOUR, NIGHT_CHARGE_END_HOUR, NIGHT_CHARGE_START_MINUTE, NIGHT_CHARGE_END_MINUTE))
+			fare = NIGHT_CHARGE_CONSTANT_MULTIPLICATION_FACTOR * fare + NIGHT_CHARGE_CONSTANT_ADDITION_FACTOR;
+		return fare;
 	}
 }

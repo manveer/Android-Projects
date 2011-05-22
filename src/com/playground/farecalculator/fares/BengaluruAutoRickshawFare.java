@@ -1,28 +1,31 @@
+/**
+ * 
+ */
 package com.playground.farecalculator.fares;
 
 import com.playground.farecalculator.utils.CommonUtils;
 
 /**
  * @author Manveer Chawla (manveer.chawla@gmail.com)
+ *
  */
-public class MumbaiMeruCabFare implements IFare
+public class BengaluruAutoRickshawFare implements IFare
 {
-	public static final int INITIAL_TICKS = 10;
-	public static final double DISTANCE_FOR_FIRST_TICK = 1000;
-	public static final double DISTANCE_FOR_EVERY_SUBSEQUENT_TICK = (100);
+	public static final int INITIAL_TICKS = 20;
+	public static final int DISTANCE_FOR_FIRST_TICK = 2000;
+	public static final int DISTANCE_FOR_EVERY_SUBSEQUENT_TICK = 100;
 	public static final int DISTANCE_FOR_TICK_BEFORE_FIRST_TICK = 100;
-	public static final int WAIT_TIME_FOR_TICK = 180;
-	public static final int WAIT_TIME_FOR_TICK_BEFORE_FIRST_TICK = 180;
-	public static final int WAIT_TIME_CONCESSION = 0; //0 minutes
-	public static final double TICKS_MULTIPLICATION_FACTOR = 1.5;
-	public static final double CONSTANT_FACTOR = 7;
-	public static final double NIGHT_CHARGE_CONSTANT_MULTIPLICATION_FACTOR = 1.25;
+	public static final int WAIT_TIME_FOR_TICK = 540;
+	public static final int WAIT_TIME_FOR_TICK_BEFORE_FIRST_TICK = 540;
+	public static final int WAIT_TIME_CONCESSION = 5*60; //5 minutes
+	public static final double TICKS_MULTIPLICATION_FACTOR = 0.9;
+	public static final double CONSTANT_FACTOR = -1;
+	public static final double NIGHT_CHARGE_CONSTANT_MULTIPLICATION_FACTOR = 1.5;
 	public static final double NIGHT_CHARGE_CONSTANT_ADDITION_FACTOR = 0;
-	public static final int NIGHT_CHARGE_START_HOUR = 0;
+	public static final int NIGHT_CHARGE_START_HOUR = 22;
 	public static final int NIGHT_CHARGE_END_HOUR = 5;
 	public static final int NIGHT_CHARGE_START_MINUTE = 0;
 	public static final int NIGHT_CHARGE_END_MINUTE = 0;
-	
 	@Override
 	public double getFare(double distanceTravelled, int waitTime)
 	{
