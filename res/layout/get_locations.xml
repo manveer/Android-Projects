@@ -1,67 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?>  
-<ScrollView  
-    xmlns:android="http://schemas.android.com/apk/res/android"  
-    android:id="@+id/GetFareBetweenLocationsView"  
-    android:layout_width="wrap_content"  
-    android:layout_height="wrap_content"  
-    android:scrollbars="vertical">  
-    <LinearLayout  
-        android:layout_width="fill_parent"  
-        android:orientation="vertical"  
-        android:layout_height="fill_parent">  
-  
-	  <TextView  
-	    android:id="@+id/TextViewTitleGetLocations"  
-	    android:layout_width="wrap_content"  
-	    android:layout_height="wrap_content"  
-	    android:text="@string/getlocationsTitleTextView"  
-	    android:textSize="10pt">  
-		</TextView>
-		
-	<EditText  
-	    android:id="@+id/EditTextSourceAddress"  
-	    android:layout_height="wrap_content"  
-	    android:hint="@string/sourceAddressEditText"  
-	    android:inputType="textMultiLine"  
-	    android:lines="3"  
-	    android:layout_width="fill_parent">  
-		</EditText>
-	    
-	 <EditText  
-	    android:id="@+id/EditTextDestinationAddress"  
-	    android:layout_height="wrap_content"  
-	    android:hint="@string/destinationAddressEditText"  
-	    android:inputType="textMultiLine"  
-	    android:lines="3"  
-	    android:layout_width="fill_parent">  
-		</EditText>
-	<RelativeLayout  
-        android:layout_width="match_parent"  
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dip" 
-        android:layout_marginLeft="2dip" 
-        android:layout_marginRight="2dip">
-		<Button
-		    android:id="@+id/ButtonGetFareBetweenLocations"  
-		    android:layout_height="wrap_content"  
-		    android:text="@string/getFareBetweenLocationsButton"  
-		    android:layout_alignParentLeft="true"
-		    android:layout_width="wrap_content">  
-		</Button>
-		<Button
-		    android:id="@+id/ButtonResetBetweenLocations"  
-		    android:layout_height="wrap_content"  
-		    android:text="@string/resetFieldsInFareBetweenLocations"
-		    android:layout_centerInParent="true"  
-		    android:layout_width="wrap_content">  
-		</Button>
-		<Button
-		    android:id="@+id/ButtonGoBackFromLocationsToStartup"  
-		    android:layout_height="wrap_content"  
-		    android:text="@string/goBackFromLocationsToStartup"
-		    android:layout_alignParentRight="true"  
-		    android:layout_width="wrap_content">  
-		</Button>
-	</RelativeLayout> 
-  </LinearLayout>  
-</ScrollView>  
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:padding="10dip"
+	android:gravity="center_horizontal|center_vertical"
+	android:layout_width="match_parent" 
+	android:layout_height="match_parent">
+
+	<ScrollView 
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/GetFareBetweenLocationsView" 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:scrollbars="vertical">
+		<LinearLayout 
+			android:layout_width="fill_parent"
+			android:orientation="vertical" 
+			android:layout_height="fill_parent">
+
+			<TextView 
+				android:id="@+id/TextViewTitleGetLocations"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:text="@string/getlocationsTitleTextView" 
+				android:textSize="10pt">
+			</TextView>
+
+			<EditText 
+				android:id="@+id/EditTextSourceAddress"
+				android:layout_height="wrap_content" 
+				android:hint="@string/sourceAddressEditText"
+				android:inputType="textMultiLine" 
+				android:lines="3"
+				android:layout_width="fill_parent">
+			</EditText>
+
+			<EditText 
+				android:id="@+id/EditTextDestinationAddress"
+				android:layout_height="wrap_content" 
+				android:hint="@string/destinationAddressEditText"
+				android:inputType="textMultiLine" 
+				android:lines="3"
+				android:layout_width="fill_parent">
+			</EditText>
+			
+			<RelativeLayout 
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" 
+				android:layout_marginTop="2dip"
+				android:layout_marginLeft="2dip" 
+				android:layout_marginRight="2dip">
+				<Button 
+					android:layout_alignParentTop="true"
+					android:layout_width="60dip" 
+					android:layout_height="40dip"
+					android:id="@+id/ButtonGoBackFromLocationsToStartup" 
+					android:text="@string/goBackFromLocationsToStartup"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true" 
+					android:gravity="center_horizontal|center_vertical" />
+				<Button 
+					android:layout_width="60dip" 
+					android:layout_height="40dip"
+					android:id="@+id/ButtonResetBetweenLocations" 
+					android:text="@string/resetFieldsInFareBetweenLocations"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true" 
+					android:gravity="center_horizontal|center_vertical" />
+				<Button 
+					android:layout_width="60dip" 
+					android:layout_height="40dip"
+					android:id="@+id/ButtonGetFareBetweenLocations" 
+					android:text="@string/getFareBetweenLocationsButton"
+					android:layout_alignParentTop="true" 
+					android:layout_centerVertical="true"
+					android:gravity="center_horizontal|center_vertical"
+					android:layout_centerInParent="true" />
+			</RelativeLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout> 

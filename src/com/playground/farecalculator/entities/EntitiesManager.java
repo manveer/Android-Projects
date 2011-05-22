@@ -4,10 +4,13 @@
 package com.playground.farecalculator.entities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.playground.farecalculator.fares.DelhiAutoRickshawFare;
+import com.playground.farecalculator.fares.DelhiMeruCabFare;
 import com.playground.farecalculator.fares.IFare;
 import com.playground.farecalculator.fares.MumbaiAutoRickshawFare;
 import com.playground.farecalculator.fares.MumbaiBlackYellowTaxiFare;
@@ -43,6 +46,7 @@ public class EntitiesManager
 		populateCitiesToTransportMap(CitiesEnum.Mumbai, TransportsEnum.AutoRickshaw, TransportsEnum.TaxiNonAC, TransportsEnum.Meru);
 		populateCitiesToTransportMap(CitiesEnum.Pune, TransportsEnum.AutoRickshaw);
 		populateCitiesToTransportMap(CitiesEnum.Bangalore, TransportsEnum.Meru);
+		populateCitiesToTransportMap(CitiesEnum.Delhi, TransportsEnum.AutoRickshaw, TransportsEnum.Meru);
 	}
 	
 	private void populateCitiesToTransportMap(CitiesEnum city, Object ... transports)
@@ -66,6 +70,9 @@ public class EntitiesManager
 		fareArray[CitiesEnum.Pune.ordinal()][TransportsEnum.AutoRickshaw.ordinal()] = new PuneAutoRickshawFare();
 		
 		fareArray[CitiesEnum.Bangalore.ordinal()][TransportsEnum.Meru.ordinal()] = new BengaluruMeruCabFare();
+		
+		fareArray[CitiesEnum.Delhi.ordinal()][TransportsEnum.AutoRickshaw.ordinal()] = new DelhiAutoRickshawFare();
+		fareArray[CitiesEnum.Delhi.ordinal()][TransportsEnum.Meru.ordinal()] = new DelhiMeruCabFare();
 	}
 	
 	public IFare getFareCalculator(CitiesEnum city, TransportsEnum transport)
@@ -123,6 +130,7 @@ public class EntitiesManager
 	 */
 	public String getFare(int citySelected, int waitTime, double distances[])
 	{
+		Arrays.sort(distances);
 		StringBuilder sb = new StringBuilder();
 		CitiesEnum city = CitiesEnum.values()[citySelected];
 		for (TransportsEnum transport : TransportsEnum.values())

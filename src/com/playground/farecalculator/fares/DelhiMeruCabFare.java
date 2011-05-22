@@ -7,17 +7,17 @@ package com.playground.farecalculator.fares;
  * @author Manveer Chawla (manveer.chawla@gmail.com)
  *
  */
-public class MumbaiAutoRickshawFare implements IFare
+public class DelhiMeruCabFare implements IFare
 {
 	public static final int INITIAL_TICKS = 10;
-	public static final int DISTANCE_FOR_FIRST_TICK = 1600;
-	public static final int DISTANCE_FOR_EVERY_SUBSEQUENT_TICK = 200;
-	public static final int DISTANCE_FOR_TICK_BEFORE_FIRST_TICK = 160;
-	public static final int WAIT_TIME_FOR_TICK = 60;
-	public static final int WAIT_TIME_FOR_TICK_BEFORE_FIRST_TICK = 60;
+	public static final int DISTANCE_FOR_FIRST_TICK = 1000;
+	public static final int DISTANCE_FOR_EVERY_SUBSEQUENT_TICK = 100;
+	public static final int WAIT_TIME_FOR_TICK = Integer.MAX_VALUE;
+	public static final int DISTANCE_FOR_TICK_BEFORE_FIRST_TICK = 100;
+	public static final int WAIT_TIME_FOR_TICK_BEFORE_FIRST_TICK = Integer.MAX_VALUE;
 	public static final int WAIT_TIME_CONCESSION = 0; //0 minutes
-	public static final double TICKS_MULTIPLICATION_FACTOR = 1.3;
-	public static final double CONSTANT_FACTOR = -2;
+	public static final double TICKS_MULTIPLICATION_FACTOR = 2;
+	public static final double CONSTANT_FACTOR = 0;
 	
 	@Override
 	public double getFare(double distanceTravelled, int waitTime)

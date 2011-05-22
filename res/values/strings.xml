@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, FareCalculatorActivity!</string>
-    <string name="app_name">Fare Calculator</string>
+    <string name="app_name">Travel Smart</string>
     <string name="getlocationsTitleTextView">Enter the source and destination address to get a rough estimate of fare between the two locations.</string>
     <string name="sourceAddressEditText">Source Address</string>
     <string name="destinationAddressEditText">Destination Address</string>
@@ -12,4 +12,8 @@
     <string name="jsonParseExceptionWhileCallingGoogleDirectionAPIErrorString">Unable to parse response received from server</string>
     <string name="resetFieldsInFareBetweenLocations">Reset</string>
     <string name="goBackFromLocationsToStartup">Back</string>
+    <string name="defaultMessageForEstimateFareDialog">Unable to estimate fare, try again.</string>
+    <string name="titleForEstimateFareDialog">Estimated Fare</string>
+    <string name="defaultMessageForJourneyFareDialog">Unable to calculate fare.</string>
+    <string name="titleForJourneyFareDialog">Calculated Fare</string>
 </resources>

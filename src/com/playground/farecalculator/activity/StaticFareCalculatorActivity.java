@@ -148,7 +148,8 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 		{
 		case DIALOG_SHOW_FARE:
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("Estimated Fare");
+			builder.setTitle(getResources().getString(R.string.titleForEstimateFareDialog));
+			builder.setMessage(getResources().getString(R.string.defaultMessageForEstimateFareDialog));
 			builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int item)
 				{
@@ -171,10 +172,7 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 		{
 		case DIALOG_SHOW_FARE:
 			String message = args.getString(MESSAGE_FOR_DIALOG);
-			// ((AlertDialog)dialog).setMessage(message);
-			TextView tv = new TextView(this);
-			tv.setText(message);
-			((AlertDialog) dialog).setView(tv);
+			((AlertDialog)dialog).setMessage(message);
 			break;
 		default:
 		}

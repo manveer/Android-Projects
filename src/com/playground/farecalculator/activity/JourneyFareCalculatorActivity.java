@@ -103,7 +103,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		mapController.setZoom(15);
 
 		List<Overlay> mapOverlays = mapView.getOverlays();
-		Drawable drawable = this.getResources().getDrawable(R.drawable.androidmarker);
+		Drawable drawable = this.getResources().getDrawable(R.drawable.nlyl_blue_circle);
 		currentLocationOverlay = new CurrentLocationsOverlay(drawable, this);
 
 		OverlayItem overlayitem = new OverlayItem(geoPoint, "Current Location", "Wassup?");
@@ -320,7 +320,8 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		{
 		case DIALOG_STOP_JOURNEY:
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("Calculated Fare");
+			builder.setTitle(getResources().getString(R.string.titleForJourneyFareDialog));
+			builder.setMessage(getResources().getString(R.string.defaultMessageForJourneyFareDialog));
 			builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int item)
 				{
@@ -343,9 +344,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		{
 		case DIALOG_STOP_JOURNEY:
 			String message = args.getString("message");
-			TextView tv = new TextView(this);
-			tv.setText(message);
-			((AlertDialog) dialog).setView(tv);
+			((AlertDialog)dialog).setMessage(message);
 			break;
 		default:
 		}

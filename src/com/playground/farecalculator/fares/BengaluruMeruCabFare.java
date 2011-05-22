@@ -12,23 +12,33 @@ public class BengaluruMeruCabFare implements IFare
 	public static final int INITIAL_TICKS = 40;
 	public static final double DISTANCE_FOR_FIRST_TICK = 4000;
 	public static final double DISTANCE_FOR_EVERY_SUBSEQUENT_TICK = (100);
+	public static final int WAIT_TIME_FOR_TICK = 90;
+	public static final int DISTANCE_FOR_TICK_BEFORE_FIRST_TICK = 100;
+	public static final int WAIT_TIME_FOR_TICK_BEFORE_FIRST_TICK = 90;
+	public static final int WAIT_TIME_CONCESSION = 20*60; //20 minutes
+	public static final double TICKS_MULTIPLICATION_FACTOR = 1.5;
+	public static final double CONSTANT_FACTOR = 0;
+	
 	@Override
 	public double getFare(double distanceTravelled, int waitTime)
 	{
 		int ticks = INITIAL_TICKS;
+		waitTime = waitTime/1000; // converting from milli seconds to seconds
 		if(distanceTravelled > DISTANCE_FOR_FIRST_TICK)
 		{
 			ticks += (int)Math.ceil(((double)distanceTravelled - DISTANCE_FOR_FIRST_TICK)/DISTANCE_FOR_EVERY_SUBSEQUENT_TICK); // 1 tick for every 200 meters after 1.5 km
-			ticks += ((waitTime/1000)/60); 
+			if( waitTime > WAIT_TIME_CONCESSION)
+				ticks += ((waitTime-WAIT_TIME_CONCESSION)/WAIT_TIME_FOR_TICK); 
 		}
-		else // totalDistance is less than 1600 m , for every 100 m one tick is there
+		else // totalDistance is less than DISTANCE_FOR_FIRST_TICK, for every DISTANCE_FOR_TICK_BEFORE_FIRST_TICK one tick is there
 		{
-			int calculatedTicks = ((waitTime/1000)/60); // ticks for wait time, 1 tick for every 1 minute
-			calculatedTicks += (int)Math.ceil(distanceTravelled/100); // ticks for every 100 metre
+			int calculatedTicks = 0;
+			if(waitTime > WAIT_TIME_CONCESSION)
+				calculatedTicks = ((waitTime - WAIT_TIME_CONCESSION)/WAIT_TIME_FOR_TICK_BEFORE_FIRST_TICK); // ticks for wait time, 1 tick for every 1 minute
+			calculatedTicks += (int)Math.ceil(distanceTravelled/DISTANCE_FOR_TICK_BEFORE_FIRST_TICK); // ticks for every 150 metre
 			if(calculatedTicks > ticks)
 				ticks = calculatedTicks;
 		}
-		return (ticks*1.5);
+		return (ticks*TICKS_MULTIPLICATION_FACTOR + CONSTANT_FACTOR);
 	}
-
 }
