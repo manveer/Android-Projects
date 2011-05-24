@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="0.48.1 "
+   width="338"
+   height="450"
+   sodipodi:docname="travel_icon.svg"
+   inkscape:export-filename="C:\cygwin\home\manveer\code\Playground\android\travel_icon.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <metadata
+     id="metadata2991">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2989">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect5409"
+       is_visible="true" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3955"
+       osb:paint="gradient">
+      <stop
+         style="stop-color:#8c5602;stop-opacity:1;"
+         offset="0"
+         id="stop3957" />
+      <stop
+         style="stop-color:#8c5602;stop-opacity:0;"
+         offset="1"
+         id="stop3959" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="644.43011 : 548.81655 : 1"
+       inkscape:vp_y="0 : 2068.575 : 0"
+       inkscape:vp_z="1235.7004 : 465.64703 : 1"
+       inkscape:persp3d-origin="970.40882 : 310.5039 : 1"
+       id="perspective3064" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3955"
+       id="linearGradient3961"
+       x1="-264.4028"
+       y1="406.19062"
+       x2="-73.501938"
+       y2="406.19062"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.7705525,0,0,2.6277247,468.13903,-846.75169)" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     id="namedview2987"
+     showgrid="false"
+     inkscape:zoom="0.64666667"
+     inkscape:cx="41.094849"
+     inkscape:cy="320.87629"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2995" />
+  <g
+     id="g2995"
+     transform="matrix(1.5147929,0,0,1.1377778,0,-57.00001)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3169"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3171"><rect
+           id="rect3173"
+           width="159.27835"
+           height="71.134018"
+           x="-582.98969"
+           y="295.36084" /></flowRegion><flowPara
+         id="flowPara3175"></flowPara></flowRoot>    <rect
+       style="fill:url(#linearGradient3961);fill-opacity:1;fill-rule:nonzero"
+       id="rect3177"
+       width="338"
+       height="450"
+       x="-2.4700614e-005"
+       y="-4.3945312"
+       rx="7.2608185"
+       ry="13.138624"
+       inkscape:export-filename="C:\cygwin\home\manveer\code\Playground\android\path5641-2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero"
+       id="path5442"
+       sodipodi:cx="-441.49484"
+       sodipodi:cy="347.93814"
+       sodipodi:rx="14.690722"
+       sodipodi:ry="21.649485"
+       d="m -426.80412,347.93814 a 14.690722,21.649485 0 1 1 -29.38144,0 14.690722,21.649485 0 1 1 29.38144,0 z"
+       transform="matrix(0.99351511,0,0,1.8535031,637.59089,-299.61746)"
+       inkscape:export-filename="C:\cygwin\home\manveer\code\Playground\android\path5641-2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f2f2f2;fill-opacity:1;fill-rule:nonzero"
+       id="path5468"
+       sodipodi:cx="-630.15466"
+       sodipodi:cy="542.78351"
+       sodipodi:rx="8.5051546"
+       sodipodi:ry="12.371134"
+       d="m -621.64951,542.78351 a 8.5051546,12.371134 0 1 1 -17.01031,0 8.5051546,12.371134 0 1 1 17.01031,0 z"
+       transform="matrix(0.99351511,0,0,1.8535031,825.02724,-660.76394)"
+       inkscape:export-filename="C:\cygwin\home\manveer\code\Playground\android\path5641-2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero"
+       id="path5604"
+       sodipodi:sides="5"
+       sodipodi:cx="-451.54639"
+       sodipodi:cy="381.95877"
+       sodipodi:r1="84.501503"
+       sodipodi:r2="68.363152"
+       sodipodi:arg1="0.96756647"
+       sodipodi:arg2="1.595885"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -403.60824,451.5464 -99.30621,-2.49198 -28.31729,-95.21589 81.80516,-56.35467 78.87566,60.38679 z"
+       transform="matrix(0.99351511,0,0,1.8535031,619.15453,-517.45184)"
+       inkscape:transform-center-x="-0.9858431"
+       inkscape:transform-center-y="-15.697699"
+       inkscape:export-filename="C:\cygwin\home\manveer\code\Playground\android\path5641-2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero"
+       id="path5442-6"
+       sodipodi:cx="-441.49484"
+       sodipodi:cy="347.93814"
+       sodipodi:rx="14.690722"
+       sodipodi:ry="21.649485"
+       d="m -426.80412,347.93814 a 14.690722,21.649485 0 1 1 -29.38144,0 14.690722,21.649485 0 1 1 29.38144,0 z"
+       transform="matrix(0.99351511,0,0,1.8535031,578.44089,-299.61746)"
+       inkscape:export-filename="C:\cygwin\home\manveer\code\Playground\android\path5641-2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f2f2f2;fill-opacity:1;fill-rule:nonzero"
+       id="path5468-0"
+       sodipodi:cx="-630.15466"
+       sodipodi:cy="542.78351"
+       sodipodi:rx="8.5051546"
+       sodipodi:ry="12.371134"
+       d="m -621.64951,542.78351 a 8.5051546,12.371134 0 1 1 -17.01031,0 8.5051546,12.371134 0 1 1 17.01031,0 z"
+       transform="matrix(0.99351511,0,0,1.8535031,765.87724,-660.76392)"
+       inkscape:export-filename="C:\cygwin\home\manveer\code\Playground\android\path5641-2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero"
+       id="rect5629"
+       width="37.113403"
+       height="57.216496"
+       x="-720.61853"
+       y="-35.567009"
+       transform="matrix(0.66015625,0,0,0.87890623,0,50.097664)"
+       rx="4.8245616"
+       ry="6.2301588" />
+    <path
+       sodipodi:type="star"
+       style="fill:#f9f9f9;fill-opacity:1;fill-rule:nonzero"
+       id="path5641"
+       sodipodi:sides="4"
+       sodipodi:cx="-615.46393"
+       sodipodi:cy="-41.752579"
+       sodipodi:r1="24.056213"
+       sodipodi:r2="52.065628"
+       sodipodi:arg1="0.78539817"
+       sodipodi:arg2="1.5707964"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -598.45362,-24.742267 -34.02062,0 0,-34.020623 34.02062,0 z"
+       transform="matrix(0.99351511,0,0,1.8535031,752.81817,273.63091)"
+       inkscape:transform-center-x="-0.40870235"
+       inkscape:transform-center-y="-12.414245"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#f9f9f9;fill-opacity:1;fill-rule:nonzero"
+       id="path5641-2"
+       sodipodi:sides="4"
+       sodipodi:cx="-615.46393"
+       sodipodi:cy="-41.752579"
+       sodipodi:r1="24.056213"
+       sodipodi:r2="52.065628"
+       sodipodi:arg1="0.78539817"
+       sodipodi:arg2="1.5707964"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -598.45362,-24.742267 -34.02062,0 0,-34.020623 34.02062,0 z"
+       transform="matrix(0.99351511,0,0,1.8535031,808.12725,270.76468)"
+       inkscape:transform-center-x="-0.26980573"
+       inkscape:transform-center-y="-10.910968"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>
