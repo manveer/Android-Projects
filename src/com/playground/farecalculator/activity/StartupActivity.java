@@ -4,6 +4,9 @@
 package com.playground.farecalculator.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +18,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.playground.farecalculator.R;
+import com.playground.farecalculator.entities.CitiesEnum;
 import com.playground.farecalculator.entities.EntitiesManager;
+import com.playground.farecalculator.entities.TransportsEnum;
 import com.playground.farecalculator.utils.Constants;
 
 /**
@@ -31,6 +36,8 @@ public class StartupActivity extends Activity implements OnClickListener, OnItem
 	
 	private static final int STATIC_FARE_CALCULATOR = 0;
 	private static final int JOURNEY_FARE_CALCULATOR = 1;
+	
+	private static final int DIALOG_START_JOURNEY = 0;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -136,18 +143,18 @@ public class StartupActivity extends Activity implements OnClickListener, OnItem
 			startStaticFareCalculatorActivity(this.citySelectedIndex);
 			break;
 		case R.id.btnStartJourney:
-			// start the journey fare calculator activity now
-			startJourneyActivity(this.citySelectedIndex);
+			showDialog(DIALOG_START_JOURNEY);
 			break;
 		default:
 			break;
 		}
 	}
 	
-	private void startJourneyActivity(int citySelected)
+	private void startJourneyActivity(int transportCelected)
 	{
 		Intent intent = new Intent(this, JourneyFareCalculatorActivity.class);
-		intent.putExtra(Constants.CITY_SELECTED, citySelected);
+		intent.putExtra(Constants.CITY_SELECTED, this.citySelectedIndex);
+		intent.putExtra(Constants.TRANSPORT_SELECTED, transportCelected);
 		startActivityForResult(intent, JOURNEY_FARE_CALCULATOR);
 	}
 	
@@ -157,4 +164,77 @@ public class StartupActivity extends Activity implements OnClickListener, OnItem
 		intent.putExtra(Constants.CITY_SELECTED, citySelected);
 		startActivityForResult(intent, STATIC_FARE_CALCULATOR);
 	}
+	
+	@Override
+	protected Dialog onCreateDialog(int id)
+	{
+		Dialog dialog = null;
+		switch (id)
+		{
+		case DIALOG_START_JOURNEY:
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			CitiesEnum city = CitiesEnum.values()[citySelectedIndex];
+			builder.setTitle(getResources().getString(R.string.titleForStartJourneyDialog));
+			final String[] transports = EntitiesManager.getInstance().getTransportsForCity(city);
+			if (transports == null || transports.length == 0)
+			{
+				builder.setMessage(getResources().getString(R.string.messageForStartJourneyDialogWithNoTransport) + city.name());
+				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() 
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss();
+					}
+				});
+			}
+			else
+			{
+				builder.setSingleChoiceItems(transports, 0, new DialogInterface.OnClickListener() 
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int item)
+					{
+						String mode = transports[item];
+						int index = 0;
+						for(TransportsEnum transport : TransportsEnum.values())
+						{
+							if(transport.getDisplayString().equals(mode))
+								break;
+							index++;
+						}
+						dialog.dismiss();
+						// start the journey fare calculator activity now
+						startJourneyActivity(index);
+					}
+				});
+				builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() 
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss();
+					}
+				});
+			}
+			builder.setCancelable(false);
+			dialog = builder.create();
+			break;
+		default:
+			dialog = null;
+		}
+		return dialog;
+	}
+
+	@Override
+	protected void onPrepareDialog(int id, Dialog dialog, Bundle args)
+	{
+		switch (id)
+		{
+		case DIALOG_START_JOURNEY:
+			break;
+		default:
+		}
+	}
+
 }

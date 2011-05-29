@@ -55,6 +55,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 	private MotionDetector motionDetector;
 	private CustomLocationListener locationListener;
 	private int citySelected;
+	private int transportSelected;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -65,6 +66,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 
 		Intent intent = getIntent();
 		citySelected = intent.getIntExtra(Constants.CITY_SELECTED, -1);
+		transportSelected = intent.getIntExtra(Constants.TRANSPORT_SELECTED, -1);
 
 		motionDetector = new MotionDetector(this);
 		
@@ -129,8 +131,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 	@Override
 	protected boolean isRouteDisplayed()
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 	private void makeUseOfNewLocation(Location location)
@@ -296,7 +297,7 @@ public class JourneyFareCalculatorActivity extends MapActivity implements OnClic
 		case R.id.btnStop:
 			isStarted = false;
 			setResult(RESULT_OK);
-			String result = EntitiesManager.getInstance().getFare(this.citySelected, waitTime, new double[]{totalDistance});
+			String result = EntitiesManager.getInstance().getFare(this.citySelected, this.transportSelected, waitTime, new double[]{totalDistance});
 			Bundle args = new Bundle();
 			args.putString("message", result);
 			showDialog(DIALOG_STOP_JOURNEY, args);

@@ -199,7 +199,7 @@ public class StaticFareCalculatorActivity extends Activity implements OnClickLis
 		}
 		if (distances != null && distances.length > 0)
 		{
-			result = EntitiesManager.getInstance().getFare(this.citySelected, 0, distances);
+			result = EntitiesManager.getInstance().getFare(this.citySelected, -1, 0, distances);
 		}
 		else
 		{

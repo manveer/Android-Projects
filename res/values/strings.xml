@@ -16,4 +16,6 @@
     <string name="titleForEstimateFareDialog">Estimated Fare</string>
     <string name="defaultMessageForJourneyFareDialog">Unable to calculate fare.</string>
     <string name="titleForJourneyFareDialog">Calculated Fare</string>
+    <string name="titleForStartJourneyDialog">Select Transport</string>
+    <string name="messageForStartJourneyDialogWithNoTransport">No modes of transport available for </string>
 </resources>

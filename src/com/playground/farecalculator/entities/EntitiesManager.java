@@ -138,24 +138,30 @@ public class EntitiesManager
 	 * @param distances distance array containing minimum and maximum distance
 	 * @return a <code>String</code> representing the fare for different modes of transport
 	 */
-	public String getFare(int citySelected, int waitTime, double distances[])
+	public String getFare(int citySelected, int transportSelected, int waitTime, double distances[])
 	{
 		Arrays.sort(distances);
 		StringBuilder sb = new StringBuilder();
 		CitiesEnum city = CitiesEnum.values()[citySelected];
+		TransportsEnum selectedMode = null;
+		if(transportSelected != -1)
+			selectedMode = TransportsEnum.values()[transportSelected];
 		for (TransportsEnum transport : TransportsEnum.values())
 		{
-			IFare fareCalculator = getFareCalculator(city, transport);
-			if (fareCalculator != null)
+			if((selectedMode != null && transport == selectedMode) || (selectedMode == null))
 			{
-				double minFare = Math.ceil(fareCalculator.getFare(distances[0], waitTime));
-				sb.append(transport.getDisplayString()).append(": Rs ").append(minFare);
-				if (distances.length > 1)
+				IFare fareCalculator = getFareCalculator(city, transport);
+				if (fareCalculator != null)
 				{
-					double maxFare = Math.ceil(fareCalculator.getFare(distances[distances.length - 1], 0));
-					sb.append(" to ").append(maxFare);
+					double minFare = Math.ceil(fareCalculator.getFare(distances[0], waitTime));
+					sb.append(transport.getDisplayString()).append(": Rs ").append(minFare);
+					if (distances.length > 1)
+					{
+						double maxFare = Math.ceil(fareCalculator.getFare(distances[distances.length - 1], 0));
+						sb.append(" to ").append(maxFare);
+					}
+					sb.append("\n");
 				}
-				sb.append("\n");
 			}
 		}
 		return sb.toString();
