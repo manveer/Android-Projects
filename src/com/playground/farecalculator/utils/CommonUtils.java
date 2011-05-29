@@ -21,7 +21,7 @@ public class CommonUtils
 		if(nightFareStartHour > 12) // greater than noon (it can be something like 11 pm (23 HRS) in night
 			totalMinutesFromStart += 24*60;
 		int currentMinutesFromStart = (currentHour - nightFareStartHour)* 60;
-		if(nightFareStartHour > 12 && currentHour < 12) // greater than noon (it can be something like 11 pm (23 HRS) in night
+		if(!(nightFareStartHour > 12 && currentHour >= nightFareStartHour && currentHour <= 23)) // greater than noon (it can be something like 11 pm (23 HRS) in night
 			currentMinutesFromStart += 24*60;
 		totalMinutesFromStart += (nightFareEndMinute - nightFareStartMinute);
 		currentMinutesFromStart += (currentMinute - nightFareStartMinute);
